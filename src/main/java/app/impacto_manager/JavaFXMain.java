@@ -1,14 +1,14 @@
 package app.impacto_manager;
 
 import app.impacto_manager.stage.StageReadyEvent;
-import app.impacto_manager.util.theme.ThemeConfig;
+import app.impacto_manager.theme.ThemeConfig;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-public class Main extends Application {
+public class JavaFXMain extends Application {
     private ConfigurableApplicationContext context;
 
     private ConfigurableApplicationContext initContext() {

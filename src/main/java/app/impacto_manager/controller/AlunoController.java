@@ -5,5 +5,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @FxmlView("fxml/aluno.fxml")
-public class Aluno {
+public class AlunoController {
+
 }
