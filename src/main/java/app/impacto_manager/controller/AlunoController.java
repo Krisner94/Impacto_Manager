@@ -4,7 +4,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@FxmlView("fxml/aluno.fxml")
+@FxmlView("fxml/studens.fxml")
 public class AlunoController {
 
 }

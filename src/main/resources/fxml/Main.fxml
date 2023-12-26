@@ -18,8 +18,8 @@
                 <Menu mnemonicParsing="false" text="Novo">
                   <items>
                     <MenuItem mnemonicParsing="false" onAction="#openStudentOnMouseClick" text="Aluno" />
-                        <MenuItem mnemonicParsing="false" text="Professor" />
-                    <MenuItem mnemonicParsing="false" text="Turma" />
+                        <MenuItem mnemonicParsing="false" onAction="#openTeacherOnMouseClick" text="Professor" />
+                    <MenuItem mnemonicParsing="false" onAction="#openClassroomOnMouseClick" text="Turma" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Turmas" />
@@ -42,7 +42,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <AnchorPane fx:id="anchorPane_views">
+            <AnchorPane fx:id="anchorPane_views" VBox.vgrow="ALWAYS">
                <children>
                   <TableView>
                     <columns>

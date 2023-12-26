@@ -4,7 +4,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@FxmlView("fxml/professor.fxml")
+@FxmlView("fxml/teacher.fxml")
 public class Professor {
 
 }
