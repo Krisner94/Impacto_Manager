@@ -10,53 +10,53 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.impacto_manager.controller.MainController">
-   <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <children>
-            <MenuBar>
-              <menus>
-                <Menu mnemonicParsing="false" text="Novo">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#openStudentOnMouseClick" text="Aluno" />
-                        <MenuItem mnemonicParsing="false" onAction="#openTeacherOnMouseClick" text="Professor" />
-                    <MenuItem mnemonicParsing="false" onAction="#openClassroomOnMouseClick" text="Turma" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Turmas" />
-                  <Menu mnemonicParsing="false" text="Financeiro">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                    </items>
-                  </Menu>
-                <Menu mnemonicParsing="false" text="Configurações">
-                  <items>
-                        <Menu mnemonicParsing="false" text="Tema">
-                          <items>
-                          <MenuItem mnemonicParsing="false" text="Tema Escuro" />
-                            <MenuItem mnemonicParsing="false" text="Tema Claro" />
-                          </items>
+    <children>
+        <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="Novo">
+                            <items>
+                                <MenuItem mnemonicParsing="false" onAction="#openStudentOnMouseClick" text="Aluno" />
+                                <MenuItem mnemonicParsing="false" onAction="#openTeacherOnMouseClick" text="Professor" />
+                                <MenuItem mnemonicParsing="false" onAction="#openClassroomOnMouseClick" text="Turma" />
+                            </items>
                         </Menu>
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Sobre" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <AnchorPane fx:id="anchorPane_views" VBox.vgrow="ALWAYS">
+                        <Menu mnemonicParsing="false" text="Turmas" />
+                        <Menu mnemonicParsing="false" text="Financeiro">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Action 1" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Configurações">
+                            <items>
+                                <Menu mnemonicParsing="false" text="Tema">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" text="Tema Escuro" />
+                                        <MenuItem mnemonicParsing="false" text="Tema Claro" />
+                                    </items>
+                                </Menu>
+                                <SeparatorMenuItem mnemonicParsing="false" />
+                                <MenuItem mnemonicParsing="false" text="Sobre" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+            <AnchorPane fx:id="pane" VBox.vgrow="ALWAYS">
                <children>
-                  <TableView>
-                    <columns>
-                      <TableColumn prefWidth="40.0" text="ID" />
-                      <TableColumn prefWidth="110.0" text="Nome" />
-                        <TableColumn prefWidth="75.0" text="Turma" />
-                        <TableColumn prefWidth="75.0" text="Sexo" />
-                        <TableColumn prefWidth="223.0" text="Telefone" />
-                        <TableColumn prefWidth="221.0" text="CPF" />
-                    </columns>
-                  </TableView>
+                        <TableView fx:id="tableView_data">
+                            <columns>
+                                <TableColumn prefWidth="52.0" text="ID" />
+                                <TableColumn prefWidth="98.0" text="Nome" />
+                                <TableColumn prefWidth="75.0" text="Turma" />
+                                <TableColumn prefWidth="75.0" text="Sexo" />
+                                <TableColumn prefWidth="223.0" text="Telefone" />
+                                <TableColumn prefWidth="221.0" text="CPF" />
+                            </columns>
+                        </TableView>
                </children>
             </AnchorPane>
-         </children>
-      </VBox>
-   </children>
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

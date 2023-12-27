@@ -5,6 +5,6 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @FxmlView("fxml/teacher.fxml")
-public class Professor {
+public class ProfessorController {
 
 }
