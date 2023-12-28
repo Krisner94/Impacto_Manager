@@ -1,7 +1,8 @@
 package app.impacto_manager.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.scene.Node;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -13,28 +14,19 @@ import static app.impacto_manager.util.NewWindow.abrirJanela;
 @Controller
 @FxmlView("fxml/Main.fxml")
 public class MainController {
-    @FXML
-    private MenuItem menuItem_students;
-    @FXML
-    private MenuItem menuItem_teacher;
-    @FXML
-    private MenuItem menuItem_classroom;
 
     @FXML
     private AnchorPane pane;
 
     @FXML
+    private MenuBar menuBar;
+
+    @FXML
     private TableView tableView_data;
-
-
 
     @FXML
     private void initialize() {
-        // Defina as âncoras do TableView para preencher completamente o AnchorPane
-        AnchorPane.setTopAnchor(tableView_data, 0.0);
-        AnchorPane.setBottomAnchor(tableView_data, 0.0);
-        AnchorPane.setLeftAnchor(tableView_data, 0.0);
-        AnchorPane.setRightAnchor(tableView_data, 0.0);
+        PaneConfig(tableView_data);
     }
 
     @FXML
@@ -58,5 +50,26 @@ public class MainController {
         this.pane.getChildren().add(pane);
     }
 
+    @FXML
+    private void openSeeStudentsOnMouseClick() {
+        Pane pane = (Pane) abrirJanela("/fxml/Main.fxml");
+
+        // Defina as âncoras do pane para preencher completamente o AnchorPane
+        PaneConfig(pane);
+
+        if (!pane.getChildren().contains(menuBar)) {
+            pane.getChildren().add(0, menuBar);
+        }
+
+        this.pane.getChildren().clear();
+        this.pane.getChildren().add(pane);
+    }
+
+    private void PaneConfig(Node object) {
+        AnchorPane.setTopAnchor(object, 0.0);
+        AnchorPane.setBottomAnchor(object, 0.0);
+        AnchorPane.setLeftAnchor(object, 0.0);
+        AnchorPane.setRightAnchor(object, 0.0);
+    }
 
 }

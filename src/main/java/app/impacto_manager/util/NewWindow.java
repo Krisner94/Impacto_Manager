@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import java.io.IOException;
 
 public class NewWindow {
+
     public static Node abrirJanela(String fxmlUri){
         FXMLLoader fxmlLoader = new FXMLLoader(NewWindow.class.getResource(fxmlUri));
         Parent root;
