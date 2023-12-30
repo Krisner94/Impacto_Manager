@@ -4,16 +4,11 @@ import app.impacto_manager.stage.StageReadyEvent;
 import app.impacto_manager.theme.ThemeConfig;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
-import java.awt.*;
-
 public class JavaFXMain extends Application {
-    @FXML
-    private MenuBar menuBar;
     private ConfigurableApplicationContext context;
 
     private ConfigurableApplicationContext initContext() {
@@ -29,8 +24,6 @@ public class JavaFXMain extends Application {
 
     @Override
     public void start(Stage stage){
-
-
         ThemeConfig.LightTheme();
         this.context.publishEvent(new StageReadyEvent(stage));
     }

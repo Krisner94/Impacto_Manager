@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
@@ -37,6 +38,7 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle(applicationTitle);
+            stage.initStyle(StageStyle.UNIFIED);
 
             stage.show();
         } catch (Exception e) {
