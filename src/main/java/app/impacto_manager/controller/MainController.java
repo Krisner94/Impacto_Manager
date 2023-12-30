@@ -42,27 +42,25 @@ public class MainController {
     @FXML
     private void openStudentOnMouseClick() {
         SystemWindow.openWindowInOtherStage("/fxml/studens.fxml", "Novo Aluno", false, Modality.APPLICATION_MODAL);
-
-
     }
 
     @FXML
     private void openTeacherOnMouseClick() {
-        Pane pane = openWindowInSameStage("/fxml/teacher.fxml");
-        this.pane.getChildren().clear();
-        this.pane.getChildren().add(pane);
+        openWindowAndClearPane("/fxml/teacher.fxml");
     }
 
     @FXML
     private void openClassroomOnMouseClick() {
-        Pane pane = openWindowInSameStage("/fxml/classroom.fxml");
-        this.pane.getChildren().clear();
-        this.pane.getChildren().add(pane);
+        openWindowAndClearPane("/fxml/classroom.fxml");
     }
 
     @FXML
     private void openSeeStudentsOnMouseClick() {
-        Pane pane = openWindowInSameStage("/fxml/main.fxml");
+        openWindowAndClearPane("/fxml/main.fxml");
+    }
+
+    private void openWindowAndClearPane(String fxmlPath) {
+        Pane pane = openWindowInSameStage(fxmlPath);
         this.pane.getChildren().clear();
         this.pane.getChildren().add(pane);
     }
