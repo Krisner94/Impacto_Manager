@@ -1,6 +1,6 @@
 package app.impacto_manager.controller;
 
-import app.impacto_manager.data.Gender;
+import app.impacto_manager.enums.Gender;
 import app.impacto_manager.util.SystemWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,12 +11,14 @@ import javafx.stage.Stage;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
+import java.util.Arrays;
+
 
 @Controller
 @FxmlView("fxml/studens.fxml")
 public class AlunoController{
     @FXML
-    private ComboBox<Gender> comboBox_gender = new ComboBox<>();
+    private ComboBox<String> comboBox_gender;
     @FXML
     private Button button_add;
 
@@ -29,13 +31,11 @@ public class AlunoController{
     }
 
     private void setComboBox_gender(){
-        comboBox_gender.getItems().addAll(Gender.Feminino, Gender.Masculino);
+        comboBox_gender.getItems().addAll(Arrays.stream(Gender.values()).map(Enum::toString).toList());
     }
 
     @FXML
     private void onButtonCloseClicked(ActionEvent event){
-        Node node = (Node) event.getSource();
-        Stage stage = (Stage) node.getScene().getWindow();
-        SystemWindow.fecharJanela(stage);
+        SystemWindow.fecharJanela(event);
     }
 }

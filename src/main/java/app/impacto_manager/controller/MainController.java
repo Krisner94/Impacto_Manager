@@ -1,6 +1,6 @@
 package app.impacto_manager.controller;
 
-import app.impacto_manager.data.pojo.StudentPojo;
+import app.impacto_manager.model.Students;
 import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,17 +25,17 @@ public class MainController {
     @FXML
     private MenuBar menuBar;
     @FXML
-    private TableView<StudentPojo> tableView_dataStudents = new TableView<>();
+    private TableView<Students> tableView_dataStudents = new TableView<>();
     @FXML
-    private TableColumn<StudentPojo, Long> colum_id;
+    private TableColumn<Students, Long> colum_id;
     @FXML
-    private TableColumn<StudentPojo, String> column_name;
+    private TableColumn<Students, String> column_name;
     @FXML
-    private TableColumn<StudentPojo, String> column_gender;
+    private TableColumn<Students, String> column_gender;
     @FXML
-    private TableColumn<StudentPojo, String> column_phone;
+    private TableColumn<Students, String> column_phone;
     @FXML
-    private TableColumn<StudentPojo, String> column_cpf;
+    private TableColumn<Students, String> column_cpf;
 
 
     @FXML
@@ -50,10 +50,10 @@ public class MainController {
     }
 
     private void addDataOnTable() {
-        ObservableList<StudentPojo> students = FXCollections.observableArrayList();
+        ObservableList<Students> students = FXCollections.observableArrayList();
 
-        students.add(new StudentPojo(1L, "Rhama Krisner", "Masculino", "123456789", "11122233344"));
-        students.add(new StudentPojo(2L, "Josiane Aparecida", "Feminino", "987654321", "44433322211"));
+        students.add(new Students(1L, "Rhama Krisner", "Masculino", "123456789", "11122233344"));
+        students.add(new Students(2L, "Josiane Aparecida", "Feminino", "987654321", "44433322211"));
 
         tableView_dataStudents.setItems(students);
     }
@@ -65,13 +65,13 @@ public class MainController {
     }
 
     @FXML
-    private void openTeacherOnMouseClick() {
-        openWindowAndClearPane("/fxml/teacher.fxml");
+    private void openTeacherOnMouseClick(){
+        SystemWindow.openWindowInOtherStage("/fxml/teacher.fxml", "Novo professor", false, Modality.APPLICATION_MODAL);
     }
 
     @FXML
     private void openClassroomOnMouseClick() {
-        openWindowAndClearPane("/fxml/classroom.fxml");
+        SystemWindow.openWindowInOtherStage("/fxml/classroom.fxml", "Nova Turma", false, Modality.APPLICATION_MODAL);
     }
 
     @FXML

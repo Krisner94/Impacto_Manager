@@ -1,6 +1,8 @@
 package app.impacto_manager.util;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -41,7 +43,11 @@ public class SystemWindow {
         }
         return pane;
     }
-    public static void fecharJanela(Stage stage){
+
+    public static void fecharJanela(ActionEvent event) {
+        Node node = (Node) event.getSource();
+        Stage stage = (Stage) node.getScene().getWindow();
         stage.close();
     }
 }
+
