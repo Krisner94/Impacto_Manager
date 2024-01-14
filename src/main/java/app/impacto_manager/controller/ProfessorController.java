@@ -7,7 +7,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@FxmlView("fxml/teacher.fxml")
+@FxmlView("fxml/new/teacher.fxml")
 public class ProfessorController {
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {

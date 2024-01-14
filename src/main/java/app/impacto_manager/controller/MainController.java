@@ -5,7 +5,7 @@ import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuBar;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -23,8 +23,6 @@ public class MainController {
     @FXML
     private AnchorPane pane;
     @FXML
-    private MenuBar menuBar;
-    @FXML
     private TableView<Students> tableView_dataStudents = new TableView<>();
     @FXML
     private TableColumn<Students, Long> colum_id;
@@ -36,6 +34,9 @@ public class MainController {
     private TableColumn<Students, String> column_phone;
     @FXML
     private TableColumn<Students, String> column_cpf;
+
+    @FXML
+    private Menu menu_config;
 
 
     @FXML
@@ -61,26 +62,47 @@ public class MainController {
 
     @FXML
     private void openStudentOnMouseClick() {
-        SystemWindow.openWindowInOtherStage("/fxml/studens.fxml", "Novo Aluno", false, Modality.APPLICATION_MODAL);
+        SystemWindow.openWindowInOtherStage("/fxml/new/studens.fxml", "Novo Aluno", false, Modality.APPLICATION_MODAL);
     }
 
     @FXML
-    private void openTeacherOnMouseClick(){
-        SystemWindow.openWindowInOtherStage("/fxml/teacher.fxml", "Novo professor", false, Modality.APPLICATION_MODAL);
+    private void openTeacherOnMouseClick() {
+        SystemWindow.openWindowInOtherStage("/fxml/new/teacher.fxml", "Novo professor", false, Modality.APPLICATION_MODAL);
     }
 
     @FXML
     private void openClassroomOnMouseClick() {
-        SystemWindow.openWindowInOtherStage("/fxml/classroom.fxml", "Nova Turma", false, Modality.APPLICATION_MODAL);
+        SystemWindow.openWindowInOtherStage("/fxml/new/classroom.fxml", "Nova Turma", false, Modality.APPLICATION_MODAL);
     }
 
     @FXML
     private void openSeeStudentsOnMouseClick() {
-        openWindowAndClearPane("/fxml/main.fxml");
+        openWindowAndClearPane();
     }
 
-    private void openWindowAndClearPane(String fxmlPath) {
-        Pane pane = openWindowInSameStage(fxmlPath);
+    @FXML
+    private void openSeeTeacherOnMouseClick() {
+        String uri = "/fxml/see/teacher.fxml";
+        String title = "Professores";
+        SystemWindow.openWindowInOtherStage(uri, title, false, Modality.WINDOW_MODAL);
+    }
+
+    @FXML
+    private void openSeeClassroomOnMouseClick() {
+        String uri = "/fxml/see/classroom.fxml";
+        String title = "Turmas";
+        SystemWindow.openWindowInOtherStage(uri, title, false, Modality.WINDOW_MODAL);
+    }
+
+    @FXML
+    private void openConfigOnMouseClick() {
+        String uri = "/fxml/configurations/configurations.fxml";
+        String title = "Turmas";
+        SystemWindow.openWindowInOtherStage(uri, title, false, Modality.WINDOW_MODAL);
+    }
+
+    private void openWindowAndClearPane() {
+        Pane pane = openWindowInSameStage("/fxml/main.fxml");
         this.pane.getChildren().clear();
         this.pane.getChildren().add(pane);
     }

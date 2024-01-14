@@ -7,7 +7,7 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 @Controller
-@FxmlView("/fxml/classroom.fxml")
+@FxmlView("/fxml/new/classroom.fxml")
 public class TurmaController {
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {
