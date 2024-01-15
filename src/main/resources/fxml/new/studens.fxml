@@ -31,7 +31,7 @@
                               <Insets />
                            </HBox.margin>
                         </DatePicker>
-                        <ComboBox fx:id="comboBox_gender" prefHeight="25.0" prefWidth="128.0" promptText="Sexo" HBox.hgrow="ALWAYS">
+                        <ComboBox fx:id="comboBox_gender" promptText="Sexo" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -40,15 +40,18 @@
                   </HBox>
                   <HBox spacing="5.0">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="311.0" promptText="CPF" HBox.hgrow="ALWAYS">
+                        <TextField prefHeight="25.0" prefWidth="221.0" promptText="CPF" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
                         </TextField>
                         <HBox prefHeight="25.0" prefWidth="269.0" spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <TextField alignment="TOP_LEFT" prefHeight="25.0" prefWidth="194.0" promptText="CEP" HBox.hgrow="ALWAYS" />
-                              <Button alignment="TOP_LEFT" mnemonicParsing="false" text="Buscar" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="textField_cep" alignment="TOP_LEFT" prefHeight="25.0" prefWidth="186.0" promptText="CEP" HBox.hgrow="ALWAYS" />
+                              <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchCepOnClick" prefHeight="25.0" prefWidth="129.0" text="Buscar" HBox.hgrow="ALWAYS">
+                                 <font>
+                                    <Font name="Roboto" size="14.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
                      </children>
@@ -57,10 +60,10 @@
             </VBox>
             <HBox spacing="5.0">
                <children>
+                  <TextField fx:id="textField_cidade" promptText="Cidade" />
+                  <TextField fx:id="textField_rua" promptText="Rua" HBox.hgrow="ALWAYS" />
+                  <TextField fx:id="textField_bairro" promptText="Bairro" HBox.hgrow="ALWAYS" />
                   <TextField promptText="Número" />
-                  <TextField promptText="Cidade" />
-                  <TextField promptText="Rua" HBox.hgrow="ALWAYS" />
-                  <TextField promptText="Bairro" HBox.hgrow="ALWAYS" />
                </children>
             </HBox>
             <VBox>
