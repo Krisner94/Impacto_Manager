@@ -10,11 +10,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.Arrays;
-
 @Controller
 @FxmlView("fxml/new/studens.fxml")
 public class AlunoController {

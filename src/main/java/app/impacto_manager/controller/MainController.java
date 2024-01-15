@@ -1,6 +1,7 @@
 package app.impacto_manager.controller;
 
 import app.impacto_manager.model.Students;
+import app.impacto_manager.repository.StudentsRepository;
 import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +14,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import net.rgielen.fxweaver.core.FxmlView;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import static app.impacto_manager.util.SystemWindow.openWindowInSameStage;
+import java.util.List;
 
+import static app.impacto_manager.util.SystemWindow.openWindowInSameStage;
+@Component
 @Controller
 @FxmlView("fxml/main.fxml")
 public class MainController {
@@ -38,6 +43,9 @@ public class MainController {
     @FXML
     private Menu menu_config;
 
+    @Autowired
+    private StudentsRepository studentsRepository;
+
 
     @FXML
     private void initialize() {
@@ -51,12 +59,16 @@ public class MainController {
     }
 
     private void addDataOnTable() {
-        ObservableList<Students> students = FXCollections.observableArrayList();
+//        ObservableList<Students> students = FXCollections.observableArrayList();
+//
+//        students.add(new Students(1L, "Rhama Krisner", "Masculino", "123456789", "11122233344"));
+//        students.add(new Students(2L, "Josiane Aparecida", "Feminino", "987654321", "44433322211"));
+//
+//        tableView_dataStudents.setItems(students);
 
-        students.add(new Students(1L, "Rhama Krisner", "Masculino", "123456789", "11122233344"));
-        students.add(new Students(2L, "Josiane Aparecida", "Feminino", "987654321", "44433322211"));
-
-        tableView_dataStudents.setItems(students);
+        List<Students> students = studentsRepository.findAll();
+        ObservableList<Students> observableStudents = FXCollections.observableArrayList(students);
+        tableView_dataStudents.setItems(observableStudents);
     }
 
 
