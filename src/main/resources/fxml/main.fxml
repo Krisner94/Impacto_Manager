@@ -44,12 +44,14 @@
                <children>
                         <TableView fx:id="tableView_dataStudents" style="-fx-background-color: transparet;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="colum_id" prefWidth="52.0" text="ID" />
+                                <TableColumn fx:id="colum_id" editable="false" prefWidth="52.0" text="ID" />
                                 <TableColumn fx:id="column_name" prefWidth="98.0" text="Nome" />
                                 <TableColumn prefWidth="75.0" text="Turma" />
                                 <TableColumn fx:id="column_gender" prefWidth="75.0" text="Sexo" />
-                                <TableColumn fx:id="column_phone" prefWidth="223.0" text="Telefone" />
-                                <TableColumn fx:id="column_cpf" prefWidth="221.0" text="CPF" />
+                                <TableColumn fx:id="column_phone" editable="false" prefWidth="151.0" text="Telefone" />
+                                <TableColumn fx:id="column_cpf" editable="false" prefWidth="190.0" text="CPF" />
+                        <TableColumn fx:id="column_edit" editable="false" prefWidth="101.0" sortable="false" />
+                        <TableColumn fx:id="column_delete" editable="false" prefWidth="94.0" sortable="false" />
                             </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

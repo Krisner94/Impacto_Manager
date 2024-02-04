@@ -1,6 +1,7 @@
 package app.impacto_manager.controller;
 
 import app.impacto_manager.enums.Gender;
+import app.impacto_manager.model.Students;
 import app.impacto_manager.util.SystemWindow;
 import app.impacto_manager.util.busca_cep.BuscaCep;
 import app.impacto_manager.util.busca_cep.Endereco;
@@ -10,11 +11,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.Arrays;
+
 @Controller
 @FxmlView("fxml/new/studens.fxml")
 public class AlunoController {
@@ -37,10 +39,14 @@ public class AlunoController {
     @FXML
     private TextField textField_numero;
 
+
+
+
     @FXML
     public void initialize() {
         setComboBox_gender();
         datePicker_born.setValue(LocalDate.now());
+
     }
 
     private void setComboBox_gender() {
@@ -81,4 +87,11 @@ public class AlunoController {
 
         SystemWindow.fecharJanela(event);
     }
+
+    public void setStudent(Students students){
+        textField_studentName.setText(students.getName());
+        textField_cpf.setText(students.getCPF());
+        comboBox_gender.setValue(students.getGender().toString());
+    }
+
 }

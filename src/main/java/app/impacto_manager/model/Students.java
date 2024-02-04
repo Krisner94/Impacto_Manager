@@ -1,13 +1,15 @@
 package app.impacto_manager.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import app.impacto_manager.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 @Getter
@@ -20,18 +22,18 @@ public class Students {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id = 1L;
     private String name;
-    private String gender;
+    private Gender gender;
     private String CPF;
     private String phone;
     private String parentName;
     private String parentPhone;
     private String parentEmail;
 
-    public Students(long id, String name, String gender, String CPF, String phone) {
-        this.id = id;
+    public Students(String name, Gender gender, String phone, String CPF) {
         this.name = name;
         this.gender = gender;
-        this.CPF = CPF;
         this.phone = phone;
+        this.CPF = CPF;
+
     }
 }

@@ -1,12 +1,13 @@
 package app.impacto_manager.controller;
 
+import app.impacto_manager.enums.Gender;
 import app.impacto_manager.model.Students;
-import app.impacto_manager.repository.StudentsRepository;
 import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,13 +15,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import net.rgielen.fxweaver.core.FxmlView;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import java.util.List;
-
 import static app.impacto_manager.util.SystemWindow.openWindowInSameStage;
+
 @Component
 @Controller
 @FxmlView("fxml/main.fxml")
@@ -28,7 +27,7 @@ public class MainController {
     @FXML
     private AnchorPane pane;
     @FXML
-    private TableView<Students> tableView_dataStudents = new TableView<>();
+    private TableView<Students> tableView_dataStudents;
     @FXML
     private TableColumn<Students, Long> colum_id;
     @FXML
@@ -39,13 +38,13 @@ public class MainController {
     private TableColumn<Students, String> column_phone;
     @FXML
     private TableColumn<Students, String> column_cpf;
-
     @FXML
-    private Menu menu_config;
+    private TableColumn<Students, Button> column_edit;
+    @FXML
+    private TableColumn<Students, Button> column_delete;
 
-    @Autowired
-    private StudentsRepository studentsRepository;
-
+    AlunoController alunoController = new AlunoController();
+    Students student;
 
     @FXML
     private void initialize() {
@@ -53,22 +52,24 @@ public class MainController {
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         column_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        column_cpf.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        column_cpf.setCellValueFactory(new PropertyValueFactory<>("CPF"));
 
-        addDataOnTable();
+        tabelaAlunosMock();
     }
 
-    private void addDataOnTable() {
-//        ObservableList<Students> students = FXCollections.observableArrayList();
-//
-//        students.add(new Students(1L, "Rhama Krisner", "Masculino", "123456789", "11122233344"));
-//        students.add(new Students(2L, "Josiane Aparecida", "Feminino", "987654321", "44433322211"));
-//
-//        tableView_dataStudents.setItems(students);
+    private void tabelaAlunosMock() {
+        ObservableList<Students> studentsList = FXCollections.observableArrayList();
+        studentsList.setAll(
+                new Students("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
+                new Students("Rhama Krisner Davidson", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
+                new Students("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626")
+        );
 
-        List<Students> students = studentsRepository.findAll();
-        ObservableList<Students> observableStudents = FXCollections.observableArrayList(students);
-        tableView_dataStudents.setItems(observableStudents);
+        tableView_dataStudents.getItems().addAll(
+                studentsList
+        );
+        editButton();
+        buttonDelete();
     }
 
 
@@ -118,5 +119,44 @@ public class MainController {
         this.pane.getChildren().clear();
         this.pane.getChildren().add(pane);
     }
+    private void editButton(){
+        column_edit.setCellFactory(param -> new TableCell<>() {
+            @Override
+            public void updateItem(Button item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    final Button btn = new Button("Editar");
+                    btn.setOnMouseClicked(event -> {
+                        student = getTableView().getItems().get(getIndex());
 
+                        String uri = "/fxml/new/studens.fxml";
+                        SystemWindow.openWindowInOtherStageForUpdate(uri, "Atualizar aluno", false,
+                                Modality.WINDOW_MODAL, student);
+
+                    });
+                    setGraphic(btn);
+                }
+            }
+        });
+    }
+
+    private void buttonDelete() {
+        column_delete.setCellFactory(param -> new TableCell<>() {
+            @Override
+            public void updateItem(Button item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    final Button btn = new Button("Excluir");
+                    btn.setOnMouseClicked(e -> {
+                        getTableView().getItems().remove((((TableCell<Students, String>) ((Button) e.getSource()).getParent())).getTableRow().getItem());
+                    });
+                    setGraphic(btn);
+                }
+            }
+        });
+    }
 }
