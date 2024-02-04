@@ -57,6 +57,12 @@ public class MainController {
         tabelaAlunosMock();
     }
 
+//    private void configTableView_dataStudents(){
+//        tableView_dataStudents.getItems().set(
+//
+//        )
+//    }
+
     private void tabelaAlunosMock() {
         ObservableList<Students> studentsList = FXCollections.observableArrayList();
         studentsList.setAll(

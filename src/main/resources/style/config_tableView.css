@@ -1,0 +1,5 @@
+/*Centralizar titulos da TableColumn*/
+.table-view .column-header .label {
+    -fx-alignment: center;
+    -fx-padding: 0.0em 0.0em 0.0em 0.0em;
+}
