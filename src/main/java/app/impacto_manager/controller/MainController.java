@@ -6,10 +6,7 @@ import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -115,7 +112,7 @@ public class MainController {
 
     @FXML
     private void openConfigOnMouseClick() {
-        String uri = "/fxml/configurations/configurations.fxml";
+        String uri = "/fxml/mais/configurations.fxml";
         String title = "Turmas";
         SystemWindow.openWindowInOtherStage(uri, title, false, Modality.WINDOW_MODAL);
     }
@@ -125,7 +122,19 @@ public class MainController {
         this.pane.getChildren().clear();
         this.pane.getChildren().add(pane);
     }
-    private void editButton(){
+    @FXML
+    private void onMenuItemSobreClick(){
+        String url = "/fxml/mais/sobre.fxml";
+        SystemWindow.openWindowInOtherStage(url, "Sobre", false, Modality.APPLICATION_MODAL);
+    }
+
+    @FXML
+    private void onMenuConfiguracaoClick(){
+        String url = "/fxml/mais/configurations.fxml";
+        SystemWindow.openWindowInOtherStage(url, "Configuracoes", false, Modality.WINDOW_MODAL);
+    }
+
+    private void editButton() {
         column_edit.setCellFactory(param -> new TableCell<>() {
             @Override
             public void updateItem(Button item, boolean empty) {

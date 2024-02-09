@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
+
 @Component
 public class StageListener implements ApplicationListener<StageReadyEvent> {
     private final String applicationTitle;
@@ -34,6 +35,8 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
             URL url = this.fxml.getURL();
             FXMLLoader fxmlLoader = new FXMLLoader(url);
             fxmlLoader.setControllerFactory(applicationContext::getBean);
+
+
             Parent root = fxmlLoader.load();
             Scene scene = new Scene(root);
             stage.setScene(scene);
