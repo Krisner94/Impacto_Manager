@@ -4,7 +4,7 @@ import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;
 import javafx.application.Application;
 
-public class ThemeConfig {
+public class ThemeConfigUtils {
     public static void DarkTheme(){
         Application.setUserAgentStylesheet(new PrimerDark().getUserAgentStylesheet());
     }

@@ -1,0 +1,4 @@
+.label:hover {
+    -fx-underline: true;
+    -fx-text-color: #267dfa;
+}
