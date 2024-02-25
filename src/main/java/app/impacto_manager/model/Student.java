@@ -17,7 +17,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Students {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id = 1L;
@@ -29,7 +29,7 @@ public class Students {
     private String parentPhone;
     private String parentEmail;
 
-    public Students(String name, Gender gender, String phone, String CPF) {
+    public Student(String name, Gender gender, String phone, String CPF) {
         this.name = name;
         this.gender = gender;
         this.phone = phone;

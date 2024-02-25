@@ -1,7 +1,7 @@
 package app.impacto_manager;
 
 import app.impacto_manager.stage.StageReadyEvent;
-import app.impacto_manager.theme.ThemeConfig;
+import app.impacto_manager.util.theme.ThemeConfigUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
@@ -33,7 +33,7 @@ public class JavaFXMain extends Application {
 
     @Override
     public void start(Stage stage){
-        ThemeConfig.LightTheme();
+        ThemeConfigUtils.LightTheme();
         this.context.publishEvent(new StageReadyEvent(stage));
     }
 

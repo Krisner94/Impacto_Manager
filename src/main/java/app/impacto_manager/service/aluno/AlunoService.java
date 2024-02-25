@@ -1,4 +1,4 @@
-package app.impacto_manager.services.aluno;
+package app.impacto_manager.service.aluno;
 
 import app.impacto_manager.model.Student;
 import app.impacto_manager.util.SystemWindow;

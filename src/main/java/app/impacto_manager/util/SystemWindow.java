@@ -1,7 +1,7 @@
 package app.impacto_manager.util;
 
 import app.impacto_manager.controller.AlunoController;
-import app.impacto_manager.model.Students;
+import app.impacto_manager.model.Student;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -37,7 +37,7 @@ public class SystemWindow {
 
     public static Stage openWindowInOtherStageForUpdate(String fxmlUri, String title, boolean resizable,
                                                       Modality modality,
-                                                Students student) {
+                                                Student student) {
         FXMLLoader fxmlLoader = new FXMLLoader(SystemWindow.class.getResource(fxmlUri));
         Parent root;
         try {

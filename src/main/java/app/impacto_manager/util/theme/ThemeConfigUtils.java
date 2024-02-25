@@ -1,4 +1,4 @@
-package app.impacto_manager.theme;
+package app.impacto_manager.util.theme;
 
 import atlantafx.base.theme.PrimerDark;
 import atlantafx.base.theme.PrimerLight;

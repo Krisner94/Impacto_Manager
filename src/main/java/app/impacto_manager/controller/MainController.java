@@ -1,7 +1,8 @@
 package app.impacto_manager.controller;
 
 import app.impacto_manager.enums.Gender;
-import app.impacto_manager.model.Students;
+import app.impacto_manager.model.Student;
+import app.impacto_manager.service.aluno.AlunoService;
 import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
+import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -20,28 +22,28 @@ import static app.impacto_manager.util.SystemWindow.openWindowInSameStage;
 @Component
 @Controller
 @FxmlView("fxml/main.fxml")
+@RequiredArgsConstructor
 public class MainController {
+    private final AlunoService service;
+
     @FXML
     private AnchorPane pane;
     @FXML
-    private TableView<Students> tableView_dataStudents;
+    private TableView<Student> tableView_dataStudents;
     @FXML
-    private TableColumn<Students, Long> colum_id;
+    private TableColumn<Student, Long> colum_id;
     @FXML
-    private TableColumn<Students, String> column_name;
+    private TableColumn<Student, String> column_name;
     @FXML
-    private TableColumn<Students, String> column_gender;
+    private TableColumn<Student, String> column_gender;
     @FXML
-    private TableColumn<Students, String> column_phone;
+    private TableColumn<Student, String> column_phone;
     @FXML
-    private TableColumn<Students, String> column_cpf;
+    private TableColumn<Student, String> column_cpf;
     @FXML
-    private TableColumn<Students, Button> column_edit;
+    private TableColumn<Student, Button> column_edit;
     @FXML
-    private TableColumn<Students, Button> column_delete;
-
-    AlunoController alunoController = new AlunoController();
-    Students student;
+    private TableColumn<Student, Button> column_delete;
 
     @FXML
     private void initialize() {
@@ -50,29 +52,25 @@ public class MainController {
         column_gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
         column_phone.setCellValueFactory(new PropertyValueFactory<>("phone"));
         column_cpf.setCellValueFactory(new PropertyValueFactory<>("CPF"));
-
+        service.initializeTableRows(column_edit,column_delete);
         tabelaAlunosMock();
     }
 
-//    private void configTableView_dataStudents(){
-//        tableView_dataStudents.getItems().set(
-//
-//        )
-//    }
 
     private void tabelaAlunosMock() {
-        ObservableList<Students> studentsList = FXCollections.observableArrayList();
-        studentsList.setAll(
-                new Students("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
-                new Students("Rhama Krisner Davidson", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
-                new Students("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626")
+        ObservableList<Student> studentList = FXCollections.observableArrayList();
+        studentList.setAll(
+                new Student("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
+                new Student("Rhama Krisner Davidson", Gender.MASCULINO, "(31)99902-0564", "12241612626"),
+                new Student("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626")
         );
 
+        studentList.add(new Student("Rhama Krisner", Gender.MASCULINO, "(31)99902-0564", "12241612626"));
+
         tableView_dataStudents.getItems().addAll(
-                studentsList
+                studentList
         );
-        editButton();
-        buttonDelete();
+
     }
 
 
@@ -134,44 +132,7 @@ public class MainController {
         SystemWindow.openWindowInOtherStage(url, "Configuracoes", false, Modality.WINDOW_MODAL);
     }
 
-    private void editButton() {
-        column_edit.setCellFactory(param -> new TableCell<>() {
-            @Override
-            public void updateItem(Button item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    final Button btn = new Button("Editar");
-                    btn.setOnMouseClicked(event -> {
-                        student = getTableView().getItems().get(getIndex());
 
-                        String uri = "/fxml/new/studens.fxml";
-                        SystemWindow.openWindowInOtherStageForUpdate(uri, "Atualizar aluno", false,
-                                Modality.WINDOW_MODAL, student);
 
-                    });
-                    setGraphic(btn);
-                }
-            }
-        });
-    }
 
-    private void buttonDelete() {
-        column_delete.setCellFactory(param -> new TableCell<>() {
-            @Override
-            public void updateItem(Button item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    final Button btn = new Button("Excluir");
-                    btn.setOnMouseClicked(e -> {
-                        getTableView().getItems().remove((((TableCell<Students, String>) ((Button) e.getSource()).getParent())).getTableRow().getItem());
-                    });
-                    setGraphic(btn);
-                }
-            }
-        });
-    }
 }
