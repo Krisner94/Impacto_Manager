@@ -16,7 +16,6 @@ import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
 
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
 import java.util.Arrays;
 
 @Controller
@@ -44,7 +43,9 @@ public class AlunoController {
     @FXML
     private TextField textField_bairro;
     @FXML
-    public TextField textField_numero;
+    public TextField textField_numeroCasa;
+    @FXML
+    public TextField textField_telefone;
 
 
     @FXML
@@ -86,7 +87,8 @@ public class AlunoController {
         sb.append(textField_cidade.getText()).append(" ");
         sb.append(textField_rua.getText()).append(" ");
         sb.append(textField_bairro.getText()).append(" ");
-        sb.append(textField_numero.getText()).append(" ");
+        sb.append(textField_numeroCasa.getText()).append(" ");
+        sb.append(textField_telefone.getText()).append(" ");
 
         System.out.println(sb);
 

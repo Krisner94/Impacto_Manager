@@ -63,7 +63,16 @@
                   <TextField fx:id="textField_cidade" promptText="Cidade" />
                   <TextField fx:id="textField_rua" promptText="Rua" HBox.hgrow="ALWAYS" />
                   <TextField fx:id="textField_bairro" promptText="Bairro" HBox.hgrow="ALWAYS" />
-                  <TextField fx:id="textField_numero" promptText="Número" />
+                  <TextField fx:id="textField_numeroCasa" promptText="Número" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox prefHeight="26.0" prefWidth="152.0">
+                     <children>
+                        <TextField fx:id="textField_telefone" prefHeight="25.0" prefWidth="300.0" promptText="Telefone" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <VBox>
