@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 
 public class JavaFXMain extends Application {
-    private ConfigurableApplicationContext context;
+    public static ConfigurableApplicationContext context;
 
     private ConfigurableApplicationContext initContext() {
         return new SpringApplicationBuilder()

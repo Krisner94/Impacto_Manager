@@ -9,8 +9,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 @FxmlView("/fxml/new/classroom.fxml")
 public class TurmaController {
+    private SystemWindow window;
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {
-        SystemWindow.fecharJanela(event);
+        window.fecharJanela(event);
     }
 }

@@ -11,8 +11,9 @@ import org.springframework.stereotype.Controller;
 @Controller
 @FxmlView("/fxml/mais/sobre.fxml")
 public class SobreController {
+    private SystemWindow window;
     @FXML
     private void onButtonFecharClicked(ActionEvent event) {
-        SystemWindow.fecharJanela(event);
+        window.fecharJanela(event);
     }
 }

@@ -9,9 +9,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 @FxmlView("fxml/new/teacher.fxml")
 public class ProfessorController {
+    private SystemWindow window;
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {
-        SystemWindow.fecharJanela(event);
+        window.fecharJanela(event);
     }
 
 }

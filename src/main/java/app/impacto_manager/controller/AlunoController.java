@@ -2,6 +2,7 @@ package app.impacto_manager.controller;
 
 import app.impacto_manager.enums.Gender;
 import app.impacto_manager.model.Student;
+import app.impacto_manager.service.aluno.AlunoService;
 import app.impacto_manager.util.SystemWindow;
 import app.impacto_manager.util.busca_cep.BuscaCep;
 import app.impacto_manager.util.busca_cep.Endereco;
@@ -10,25 +11,32 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Controller;
+
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.util.Arrays;
 
 @Controller
-@FxmlView("fxml/new/studens.fxml")
+@FxmlView("/fxml/new/studens.fxml")
+@RequiredArgsConstructor
 public class AlunoController {
+    private final AlunoService service;
+    private SystemWindow window;
+
+    //TODO: desfazer essa bagaça quando implementar o banco de dados
     @FXML
-    private ComboBox<String> comboBox_gender;
+    public ComboBox<String> comboBox_gender;
     @FXML
-    private TextField textField_studentName;
+    public TextField textField_studentName;
     @FXML
     private DatePicker datePicker_born;
     @FXML
-    private TextField textField_cpf;
+    public TextField textField_cpf;
     @FXML
-    private TextField textField_cep;
+    public TextField textField_cep;
     @FXML
     private TextField textField_cidade;
     @FXML
@@ -36,15 +44,12 @@ public class AlunoController {
     @FXML
     private TextField textField_bairro;
     @FXML
-    private TextField textField_numero;
-
-
+    public TextField textField_numero;
 
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         setComboBox_gender();
-        datePicker_born.setValue(LocalDate.now());
 
     }
 
@@ -54,7 +59,7 @@ public class AlunoController {
 
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {
-        SystemWindow.fecharJanela(event);
+        window.fecharJanela(event);
     }
 
     @FXML
@@ -70,6 +75,7 @@ public class AlunoController {
 
     @FXML
     private void print(ActionEvent event) {
+        service.addNewStudent();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         StringBuilder sb = new StringBuilder();
         sb.append(textField_studentName.getText()).append(" ");
@@ -84,13 +90,12 @@ public class AlunoController {
 
         System.out.println(sb);
 
-        SystemWindow.fecharJanela(event);
+        window.fecharJanela(event);
     }
 
-    public void setStudent(Student student){
+    public void setStudent(Student student) {
         textField_studentName.setText(student.getName());
         textField_cpf.setText(student.getCPF());
         comboBox_gender.setValue(student.getGender().toString());
     }
-
 }

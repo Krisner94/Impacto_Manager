@@ -11,45 +11,32 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lombok.RequiredArgsConstructor;
+import net.rgielen.fxweaver.core.FxWeaver;
+import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
+import static antlr.build.ANTLR.root;
+
 public class SystemWindow {
 
-    public static Stage openWindowInOtherStage(String fxmlUri, String title, boolean resizable, Modality modality) {
-        FXMLLoader fxmlLoader = new FXMLLoader(SystemWindow.class.getResource(fxmlUri));
-        Parent root;
-        try {
-            root = fxmlLoader.load();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setTitle(title);
-        stage.setResizable(resizable);
-        stage.initModality(modality);
-        stage.initStyle(StageStyle.UNIFIED);
-        stage.show();
-        return stage;
+    public static Stage openWindowInOtherStage(Node object,
+                                               String title,
+                                               boolean resizable,
+                                               Modality modality) {
+
+        return getStage((Parent) object, title, resizable, modality);
     }
 
-    public static Stage openWindowInOtherStageForUpdate(String fxmlUri, String title, boolean resizable,
-                                                      Modality modality,
-                                                Student student) {
-        FXMLLoader fxmlLoader = new FXMLLoader(SystemWindow.class.getResource(fxmlUri));
-        Parent root;
-        try {
-            root = fxmlLoader.load();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+    public static Stage openWindowInOtherStageForUpdate(Node node, String title, boolean resizable,
+                                                        Modality modality,
+                                                        Student student) {
+        return getStage((Parent) node, title, resizable, modality);
+    }
 
-        AlunoController controller = fxmlLoader.getController();
-        controller.setStudent(student);
-
-        Scene scene = new Scene(root);
+    private static Stage getStage(Parent node, String title, boolean resizable, Modality modality) {
+        Scene scene = new Scene(node);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.setTitle(title);
