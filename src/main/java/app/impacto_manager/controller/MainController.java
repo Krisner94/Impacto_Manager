@@ -3,24 +3,28 @@ package app.impacto_manager.controller;
 import app.impacto_manager.model.Student;
 import app.impacto_manager.service.aluno.AlunoService;
 import app.impacto_manager.service.main.MainService;
+import app.impacto_manager.util.SystemWindow;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import lombok.RequiredArgsConstructor;
+import net.rgielen.fxweaver.core.FxWeaver;
 import net.rgielen.fxweaver.core.FxmlView;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-@Component
 @Controller
 @FxmlView("fxml/main.fxml")
 @RequiredArgsConstructor
 public class MainController {
     private final MainService mainService;
     private final AlunoService alunoService;
+    private final AlunoController alunoController;
+    private final FxWeaver fxWeaver;
 
     @FXML
     private AnchorPane pane;
@@ -95,5 +99,11 @@ public class MainController {
 
     @FXML
     private void onMenuConfiguracaoClick(){
+    }
+
+    public void openEditStudentWindow(Student student) {
+        alunoController.setStudent(student);
+        SystemWindow.openWindowInOtherStageForUpdate(fxWeaver.load(AlunoController.class).getView().get(),
+                "Atualizar aluno", false, Modality.APPLICATION_MODAL, student);
     }
 }

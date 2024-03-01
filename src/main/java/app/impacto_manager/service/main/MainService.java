@@ -21,7 +21,6 @@ import org.springframework.stereotype.Service;
 public class MainService {
     private final FxWeaver fxWeaver;
     public ObservableList<Student> studentList = FXCollections.observableArrayList();
-    private SystemWindow window;
 
     private static TableCell<Student, Button> call(TableColumn<Student, Button> param) {
         return new TableCell<>() {
@@ -32,7 +31,10 @@ public class MainService {
                     setGraphic(null);
                 } else {
                     final Button btn = new Button("Excluir");
-                    btn.setOnMouseClicked(e -> getTableView().getItems().remove((((TableCell<Student, String>) ((Button) e.getSource()).getParent())).getTableRow().getItem()));
+                    btn.setOnMouseClicked(e -> getTableView()
+                            .getItems()
+                            .remove((((TableCell<Student, String>) ((Button) e.getSource()).getParent()))
+                                    .getTableRow().getItem()));
                     setGraphic(btn);
                 }
             }
@@ -51,9 +53,12 @@ public class MainService {
                 } else {
                     Student student = getTableRow().getItem();
                     final Button btn = new Button("Editar");
-                    btn.setOnMouseClicked(event -> SystemWindow.openWindowInOtherStageForUpdate(fxWeaver.load(AlunoService.class).getView().get(),
+                    btn.setOnMouseClicked(event -> SystemWindow.openWindowInOtherStageForUpdate(
+                            fxWeaver.load(AlunoController.class).getView().get(),
                             "Atualizar aluno", false,
                             Modality.WINDOW_MODAL, student));
+
+
                     setGraphic(btn);
                 }
             }

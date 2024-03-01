@@ -23,7 +23,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class AlunoController {
     private final AlunoService service;
-    private SystemWindow window;
+    private Student student;
 
     //TODO: desfazer essa bagaça quando implementar o banco de dados
     @FXML
@@ -60,7 +60,7 @@ public class AlunoController {
 
     @FXML
     private void onButtonCloseClicked(ActionEvent event) {
-        window.fecharJanela(event);
+        new SystemWindow().fecharJanela(event);
     }
 
     @FXML
@@ -92,7 +92,7 @@ public class AlunoController {
 
         System.out.println(sb);
 
-        window.fecharJanela(event);
+        new SystemWindow().fecharJanela(event);
     }
 
     public void setStudent(Student student) {
