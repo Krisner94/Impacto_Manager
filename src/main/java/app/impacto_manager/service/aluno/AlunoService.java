@@ -23,10 +23,14 @@ public class AlunoService {
                 "Novo Aluno", false, Modality.APPLICATION_MODAL);
     }
 
-    public void updateStudentData(){
+    public void updateStudentData(Student student){
         SystemWindow.openWindowInOtherStageForUpdate(fxWeaver.load(AlunoController.class).getView().get(),
                 "Atualizar Aluno", false, Modality.APPLICATION_MODAL, student);
 
+        getController().textField_studentName.setText(student.getName());
+        getController().comboBox_gender.setValue(student.getGender().name());
+        getController().textField_telefone.setText(student.getGender().toString());
+        getController().textField_cpf.setText(student.getCPF());
     }
 
     public void addNewStudent() {

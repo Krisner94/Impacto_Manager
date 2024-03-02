@@ -101,9 +101,5 @@ public class MainController {
     private void onMenuConfiguracaoClick(){
     }
 
-    public void openEditStudentWindow(Student student) {
-        alunoController.setStudent(student);
-        SystemWindow.openWindowInOtherStageForUpdate(fxWeaver.load(AlunoController.class).getView().get(),
-                "Atualizar aluno", false, Modality.APPLICATION_MODAL, student);
-    }
+
 }

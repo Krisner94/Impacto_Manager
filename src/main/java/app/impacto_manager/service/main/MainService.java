@@ -1,17 +1,14 @@
 package app.impacto_manager.service.main;
 
-import app.impacto_manager.controller.AlunoController;
 import app.impacto_manager.enums.Gender;
 import app.impacto_manager.model.Student;
 import app.impacto_manager.service.aluno.AlunoService;
-import app.impacto_manager.util.SystemWindow;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.stage.Modality;
 import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.stereotype.Service;
@@ -53,10 +50,9 @@ public class MainService {
                 } else {
                     Student student = getTableRow().getItem();
                     final Button btn = new Button("Editar");
-                    btn.setOnMouseClicked(event -> SystemWindow.openWindowInOtherStageForUpdate(
-                            fxWeaver.load(AlunoController.class).getView().get(),
-                            "Atualizar aluno", false,
-                            Modality.WINDOW_MODAL, student));
+                    btn.setOnMouseClicked(event -> {
+                        openEditStudentWindow(student);
+                    });
 
 
                     setGraphic(btn);
@@ -74,6 +70,11 @@ public class MainService {
                 studentList
         );
 
+    }
+
+    public void openEditStudentWindow(Student student) {
+        AlunoService service = new AlunoService(this, fxWeaver);
+        service.updateStudentData(student);
     }
 
 
