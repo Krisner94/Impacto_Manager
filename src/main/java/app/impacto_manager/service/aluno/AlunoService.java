@@ -7,6 +7,7 @@ import app.impacto_manager.model.Student;
 import app.impacto_manager.service.main.MainService;
 import app.impacto_manager.util.SystemWindow;
 import javafx.stage.Modality;
+import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
 import net.rgielen.fxweaver.core.FxWeaver;
 import org.springframework.stereotype.Service;
