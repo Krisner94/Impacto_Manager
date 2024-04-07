@@ -47,7 +47,6 @@ public class StageListener implements ApplicationListener<StageReadyEvent> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
 }
